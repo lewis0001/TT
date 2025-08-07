@@ -60,6 +60,19 @@ ws.onmessage = (event) => {
   }
 };
 
+ws.onclose = () => {
+  viewerCount.textContent = '0';
+  likeCount.textContent = '0';
+  shareCount.textContent = '0';
+  battleTimer.textContent = '-';
+  comments.innerHTML = '';
+  gifters.innerHTML = '';
+};
+
+ws.onerror = (err) => {
+  console.error('WebSocket error', err);
+};
+
 function addComment({ user, nickname, avatar, comment }) {
   const div = document.createElement('div');
   div.className = 'comment';
@@ -93,3 +106,4 @@ setInterval(()=>{
     }
   }
 }, 1000);
+
