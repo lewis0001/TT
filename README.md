@@ -20,3 +20,6 @@ npm start
 Then open [http://localhost:3000](http://localhost:3000) in your browser and enter the TikTok username of the live stream in the text box.
 
 Logs are written to `logs/events.log` and `logs/error.log`.
+
+> **Tip:** If you pull new changes or encounter a crash inside `tiktok-live-connector`, run `npm install` again so the bundled patch for missing gift images is reapplied.
+

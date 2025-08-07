@@ -8,6 +8,8 @@ const battleTimer = document.getElementById('battleTimer');
 const gifters = document.getElementById('gifters');
 const usernameInput = document.getElementById('usernameInput');
 const connectBtn = document.getElementById('connectBtn');
+const disconnectBtn = document.getElementById('disconnectBtn');
+
 
 let battleEndTime = null;
 
@@ -22,6 +24,11 @@ connectBtn.addEventListener('click', sendConnect);
 usernameInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') sendConnect();
 });
+
+disconnectBtn.addEventListener('click', () => {
+  ws.send(JSON.stringify({ type: 'disconnect' }));
+});
+
 
 ws.onmessage = (event) => {
   const msg = JSON.parse(event.data);
@@ -44,6 +51,31 @@ ws.onmessage = (event) => {
     case 'topGifters':
       updateGifters(msg.data);
       break;
+    case 'reset':
+      viewerCount.textContent = '0';
+      likeCount.textContent = '0';
+      shareCount.textContent = '0';
+      battleTimer.textContent = '-';
+      comments.innerHTML = '';
+      gifters.innerHTML = '';
+      break;
+  }
+};
+
+ws.onclose = () => {
+  viewerCount.textContent = '0';
+  likeCount.textContent = '0';
+  shareCount.textContent = '0';
+  battleTimer.textContent = '-';
+  comments.innerHTML = '';
+  gifters.innerHTML = '';
+};
+
+ws.onerror = (err) => {
+  console.error('WebSocket error', err);
+};
+
+
   }
 };
 
@@ -80,3 +112,4 @@ setInterval(()=>{
     }
   }
 }, 1000);
+

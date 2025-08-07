@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+
+    "test": "echo \"No tests\"",
+    "postinstall": "patch-package"
+
     "test": "echo \"No tests\""
+
   },
   "keywords": [],
   "author": "",
@@ -16,5 +21,10 @@
     "tiktok-live-connector": "^2.0.7-alpha2",
     "winston": "^3.17.0",
     "ws": "^8.18.3"
+
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.0"
+
   }
 }
