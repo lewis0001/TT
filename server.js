@@ -25,12 +25,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
+
 process.on('uncaughtException', err => {
   logger.error('Uncaught exception', err);
 });
 process.on('unhandledRejection', err => {
   logger.error('Unhandled rejection', err);
 });
+
 
 function broadcast(data) {
   const msg = JSON.stringify(data);
@@ -156,6 +158,7 @@ async function startConnection(username) {
   }
 }
 
+
 async function stopConnection() {
   if (tiktokConnection) {
     tiktokConnection.removeAllListeners();
@@ -171,6 +174,7 @@ async function stopConnection() {
   logger.info('Disconnected from livestream');
 }
 
+
 wss.on('connection', ws => {
   ws.on('message', message => {
     let data;
@@ -181,8 +185,10 @@ wss.on('connection', ws => {
     }
     if (data.type === 'connect') {
       startConnection(data.username);
+
     } else if (data.type === 'disconnect') {
       stopConnection();
+
     }
   });
 });

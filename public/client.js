@@ -10,6 +10,7 @@ const usernameInput = document.getElementById('usernameInput');
 const connectBtn = document.getElementById('connectBtn');
 const disconnectBtn = document.getElementById('disconnectBtn');
 
+
 let battleEndTime = null;
 
 function sendConnect() {
@@ -27,6 +28,7 @@ usernameInput.addEventListener('keypress', e => {
 disconnectBtn.addEventListener('click', () => {
   ws.send(JSON.stringify({ type: 'disconnect' }));
 });
+
 
 ws.onmessage = (event) => {
   const msg = JSON.parse(event.data);
@@ -71,6 +73,10 @@ ws.onclose = () => {
 
 ws.onerror = (err) => {
   console.error('WebSocket error', err);
+};
+
+
+  }
 };
 
 function addComment({ user, nickname, avatar, comment }) {
