@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TikTok Live Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; }
+#stats { display: flex; gap: 20px; }
+#comments { max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+.comment { margin-bottom: 5px; }
+.avatar { width: 24px; height: 24px; border-radius: 50%; vertical-align: middle; margin-right: 5px; }
+#gifters { margin-top: 10px; }
+</style>
+</head>
+<body>
+<h1>TikTok Live Dashboard</h1>
+<div>
+  <input id="usernameInput" placeholder="TikTok username" />
+  <button id="connectBtn">Connect</button>
+</div>
+<div id="stats">
+  <div>Viewers: <span id="viewerCount">0</span></div>
+  <div>Likes: <span id="likeCount">0</span></div>
+  <div>Shares: <span id="shareCount">0</span></div>
+  <div>Battle Timer: <span id="battleTimer">-</span></div>
+</div>
+<h2>Comments</h2>
+<div id="comments"></div>
+<h2>Top Gifters</h2>
+<ul id="gifters"></ul>
+<script src="client.js"></script>
+</body>
+</html>
