@@ -1,0 +1,23 @@
+diff --git a/node_modules/tiktok-live-connector/dist/lib/_legacy/data-converter.js b/node_modules/tiktok-live-connector/dist/lib/_legacy/data-converter.js
+index 42e535c..bdd6120 100644
+--- a/node_modules/tiktok-live-connector/dist/lib/_legacy/data-converter.js
++++ b/node_modules/tiktok-live-connector/dist/lib/_legacy/data-converter.js
+@@ -66,14 +66,14 @@ function simplifyObject(type, originalObject) {
+                     repeat_end: webcastObject.repeatEnd ? 1 : 0,
+                     gift_type: webcastObject.giftDetails?.giftType
+                 };
++                if (webcastObject.giftDetails?.giftImage) {
++                    Object.assign(webcastObject, webcastObject.giftDetails.giftImage);
++                    delete webcastObject.giftDetails.giftImage;
++                }
+                 if (webcastObject.giftDetails) {
+                     Object.assign(webcastObject, webcastObject.giftDetails);
+                     delete webcastObject.giftDetails;
+                 }
+-                if (webcastObject.giftDetails.giftImage) {
+-                    Object.assign(webcastObject, webcastObject.giftDetails.giftImage);
+-                    delete webcastObject.giftDetails.giftImage;
+-                }
+                 if (webcastObject.giftExtra) {
+                     if (webcastObject.giftExtra.toUserId) {
+                         webcastObject.receiverUserId = webcastObject.giftExtra.toUserId;
